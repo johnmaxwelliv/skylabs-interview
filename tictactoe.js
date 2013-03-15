@@ -2,6 +2,7 @@ var Board = function(side_length) {
     'use strict';
     this.side_length = side_length;
     this.squares = [];
+    this.player = 'X';
     var row, i, j;
     for (i = 0; i < side_length; i++) {
         row = [];
@@ -71,29 +72,36 @@ Board.prototype.winner = function() {
     return null;
 };
 
-function game1() {
-    var board = new Board(3);
-
-    board.square_is(1, 1, 'X');
-    board.square_is(1, 0, 'O');
-    board.square_is(0, 1, 'X');
-    board.square_is(2, 1, 'O');
-    board.square_is(0, 2, 'X');
-    board.square_is(2, 0, 'O');
-
-    // check for a winner - won't find one.
-    if (board.winner()) {
-        alert('Winner!! -> ' + board.winner());
-        return;
+Board.prototype.check_for_winner = function() {
+    'use strict';
+    if (this.winner() !== null) {
+        alert(this.winner() + " has won!");
     }
+};
 
-    board.square_is(0, 0, 'X');
-
-    // check for a winner - X has won.
-    if (board.winner()) {
-        alert('Winner!! -> ' + board.winner());
-        return;
+Board.prototype.initialize = function() {
+    'use strict';
+    function makeOnClickAction(cell, board, i, j) {
+        return function() {
+            cell.text(board.player);
+            board.square_is(i, j, board.player);
+            board.check_for_winner();
+            board.player = board.player === 'X' ? 'O' : 'X';
+        };
+    }
+    var i, j, row, cell, board;
+    for (i = 0; i < this.side_length; i++) {
+        row = $('<tr>');
+        for (j = 0; j < this.side_length; j++) {
+            cell=$('<td><a href="#">?</a></td>');
+            board = this;
+            cell.click(makeOnClickAction(cell, board, i, j));
+            row.append(cell);
+        }
+        row.append('</tr>');
+        $('#board').append(row);
     }
 }
 
-game1();
+var board = new Board(5);
+board.initialize();
