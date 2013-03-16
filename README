@@ -3,6 +3,8 @@ TIC TAC TOE
 
 See tictactoe.js, index.html, and main.css.
 
+Most of the interesting stuff is in tictactoe.js.  I filled in the function that you guys gave me, using nested for loops to initialize the board with nulls and check for runs of 3 consecutive Xs and Os.  Then I made a basic HTML document and added more methods to the Board object for initializing an HTML table with click handlers that modified the game state, and another method that would check to see if the game was over and if it was, display an alert.
+
 SCHEMA
 ------
 
