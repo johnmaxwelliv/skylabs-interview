@@ -9,6 +9,7 @@ class User(models.Model):
 class Gift(models.Model):
     name = models.CharField()
     price = models.PositiveIntegerField()
+    total_contributed = models.PositiveIntegerField()
     requestor = models.ForeignKey(User)
     fulfilled = models.BooleanField(default=False)
 

@@ -1,0 +1,11 @@
+TIC TAC TOE
+-----------
+
+See tictactoe.js, index.html, and main.css.
+
+SCHEMA
+------
+
+See gift_registry/gift_registry/schema1.py and gift_registry/gift_registry/schema2.py.
+
+The second schema makes 3 changes: each user gets an additional integer field tracking their total money contributed, each gift gets a field tracking the total amount that's been contributed to it, and each gift gets an additional boolean field tracking whether it's been fulfilled or not.  These complicate the application logic a bit.  Every time someone makes a contribution, that contribution amount will be added to their total money contributed and the gift's total money contributed.  Additionally, the application will have to check whether a gift's total contribution amount has been reached, in order to make sure its fulfilled boolean is set correctly.
